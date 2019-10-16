@@ -17,7 +17,7 @@ resource "google_compute_address" "jenkinsip" {
 # }
 
 resource "google_compute_instance" "jenkins" {
-  name         = "jenkins-ashok-abc"
+  name         = "${var.instance_name}"
   machine_type = "n1-standard-1"
   zone         = "us-east1-b"
 
