@@ -5,8 +5,8 @@ provider "google" {
 }
 
 resource "google_compute_address" "jenkinsip" {
-  name   = "jenkinsip"
-  region = "us-east1"
+  name   = "${var.jenkins_instance_ip_name}"
+  region = "${var.jenkins_instance_ip_region}"
 }
 
 # data "template_file" "mydeamon" {
