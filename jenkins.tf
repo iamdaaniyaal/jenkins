@@ -22,7 +22,7 @@ resource "google_compute_instance" "jenkins" {
   zone         = "us-east1-b"
 
   tags        = ["name", "jenkins", "http-server"]
-  description = "${google_compute_address.sonarqubeip.address}"
+  description = "${google_compute_address.jenkinsip.address}"
 
   boot_disk {
     initialize_params {
@@ -115,6 +115,6 @@ resource "google_compute_instance" "jenkins" {
 
 
   # metadata_startup_script = "sudo yum update -y; sudo yum install wget -y; sudo  echo \"root123\" | passwd --stdin root; sudo  mv /etc/ssh/sshd_config  /opt; sudo touch /etc/ssh/sshd_config; sudo echo -e \"Port 22\nHostKey /etc/ssh/ssh_host_rsa_key\nPermitRootLogin yes\nPubkeyAuthentication yes\nPasswordAuthentication yes\nUsePAM yes\" >  /etc/ssh/sshd_config; sudo systemctl restart  sshd;sudo useradd test; sudo echo  -e \"test    ALL=(ALL)  NOPASSWD:  ALL\" >> /etc/sudoers; sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo; sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key; sudo yum install jenkins maven google-cloud-sdk kubectl -y; sudo  wget -O  /opt/docker.sh  https://get.docker.com && sudo chmod 755 /opt/docker.sh; sudo wget -P /opt/  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip; sudo unzip /opt/sonar-scanner-cli-3.3.0.1492-linux.zip -d /opt  &&  sudo mv /opt/sonar-scanner-3.3.0.1492-linux  /opt/sonar-scanner"
-  metadata_startup_script = "sudo yum update -y; sudo yum install wget -y; sudo  echo \"root123\" | passwd --stdin root; sudo  mv /etc/ssh/sshd_config  /opt; sudo touch /etc/ssh/sshd_config; sudo echo -e \"Port 22\nHostKey /etc/ssh/ssh_host_rsa_key\nPermitRootLogin yes\nPubkeyAuthentication yes\nPasswordAuthentication yes\nUsePAM yes\" >  /etc/ssh/sshd_config; sudo systemctl restart  sshd;sudo useradd test; sudo echo  -e \"test    ALL=(ALL)  NOPASSWD:  ALL\" >> /etc/sudoers; sudo yum install git -y; sudo git clone https://github.com/iamdaaniyaal/devops.git; sudo chmod 777 *.*; sudo sh jenkins.sh;"
+  metadata_startup_script = "sudo yum update -y; sudo yum install wget -y; sudo  echo \"root123\" | passwd --stdin root; sudo  mv /etc/ssh/sshd_config  /opt; sudo touch /etc/ssh/sshd_config; sudo echo -e \"Port 22\nHostKey /etc/ssh/ssh_host_rsa_key\nPermitRootLogin yes\nPubkeyAuthentication yes\nPasswordAuthentication yes\nUsePAM yes\" >  /etc/ssh/sshd_config; sudo systemctl restart  sshd;sudo useradd test; sudo echo  -e \"test    ALL=(ALL)  NOPASSWD:  ALL\" >> /etc/sudoers; sudo yum install git -y; sudo git clone https://github.com/iamdaaniyaal/jenkins.git; sudo chmod 777 *.*; sudo sh jenkins.sh;"
   # metadata_startup_script = "sudo yum update -y; sudo yum install git -y; sudo git clone https://github.com/iamdaaniyaal/devops.git; sudo chmod 777 *.*; sudo sh jenkins.sh;"
 }
