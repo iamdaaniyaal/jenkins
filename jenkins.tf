@@ -9,12 +9,12 @@ resource "google_compute_address" "jenkinsip" {
   region = "us-east1"
 }
 
-data "template_file" "mydeamon" {
-  # template = "${file("conf.wp-config.php")}"
+# data "template_file" "mydeamon" {
+#   # template = "${file("conf.wp-config.php")}"
 
-  template = templatefile("${path.module}/mydeamon.json", { jenkinsip = "${google_compute_address.jenkinsip.address}" })
+#   template = templatefile("${path.module}/mydeamon.json", { jenkinsip = "${google_compute_address.jenkinsip.address}" })
 
-}
+# }
 
 resource "google_compute_instance" "jenkins" {
   name         = "jenkins-ashok-abc"
@@ -64,18 +64,18 @@ resource "google_compute_instance" "jenkins" {
   # }
 
 
-  provisioner "file" {
-    content     = "${data.template_file.mydeamon.rendered}"
-    destination = "/tmp/mydeamon.json"
+#   provisioner "file" {
+#     content     = "${data.template_file.mydeamon.rendered}"
+#     destination = "/tmp/mydeamon.json"
 
-    connection {
-      type     = "ssh"
-      user     = "root"
-      password = "root123"
-      # host     = "${google_compute_instance.default.network_interface[0].access_config[0].nat_ip}"
-      host = "${google_compute_address.jenkinsip.address}"
-    }
-  }
+#     connection {
+#       type     = "ssh"
+#       user     = "root"
+#       password = "root123"
+#       # host     = "${google_compute_instance.default.network_interface[0].access_config[0].nat_ip}"
+#       host = "${google_compute_address.jenkinsip.address}"
+#     }
+#   }
 
 
   # provisioner "file" {
